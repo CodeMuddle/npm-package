@@ -46,23 +46,46 @@ npm install --save-dev ts-jest @types/jest
 ```
 
 * Create Typescript configuration file `tsconfig.json`
+```javascript
+// inside package.json
+{
+...
+    "scripts": {
+...
+        "tsc:init": "node ./node_modules/typescript/lib/tsc --init",
+        "tsc:compile": "node ./node_modules/typescript/lib/tsc"
+...
+    }
+...    
+}
+```
+
 ```sh
-node ./node_modules/typescript/lib/tsc --init
+npm run tsc:init
+```
+
+* Modify the Typescript config file `tsconfig.json` so that it compiles to es6
+```javascript
+{
+...
+    "compilerOptions": {
+        "target": "es6"
+    }
+...
+}
 ```
 
 * Add Jest configuration info to `package.json`
 ```javascript
 // inside package.json
 {
-
 ...
-
-"scripts": {
-  "test": "jest"
-}
-
+    "scripts": {
 ...
-
+        "test": "jest"
+...
+    }
+...
   "jest": {
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
@@ -74,19 +97,6 @@ node ./node_modules/typescript/lib/tsc --init
       "js"
     ]
   }
-
-...
-
-}
-```
-
-* Modify the Typescript config file so that it compiles to es6
-```javascript
-{
-...
-    "compilerOptions": {
-        "target": "es6"
-    }
 ...
 }
 ```
@@ -177,4 +187,5 @@ npm test
 
 * Write the required logic 
 ```javascript
+
 ```
