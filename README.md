@@ -82,6 +82,7 @@ npm run tsc:init
 {
 ...
     "compilerOptions": {
+        "module": "es6",
         "target": "es6"
     }
 ...
