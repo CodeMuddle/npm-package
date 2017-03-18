@@ -7,10 +7,10 @@
 ## Step by Step 
 
 * Decide on what technology stack to use
- * The system is a `nodejs package`
- * We use `Typescript` as the coding language
- * We use `Gulp` as the build system (along with Typescript and Babel plugins)
- * We use `jest` for testing
+    * The system is a `nodejs package`
+    * We use `Typescript` as the coding language
+    * We use `Gulp` as the build system (along with Typescript and Babel plugins)
+    * We use `jest` for testing
 
 * Initialize the project
 ```sh
