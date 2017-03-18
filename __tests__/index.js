@@ -1,5 +1,5 @@
 // inside __tests__/index.js
-describe('Exposed functions of Question Answering System', function() {
+describe('Testing ask function of Question Answering System', function() {
     beforeEach(function() {
         console.log('About to run the index.js test');
     });

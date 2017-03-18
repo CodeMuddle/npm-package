@@ -1,5 +1,5 @@
 // inside __tests__/index.ts
-describe('Exposed functions of Question Answering System', () => {
+describe('Testing ask function of Question Answering System', () => {
     beforeEach(() => {
         console.log('About to run the index.ts test');
     });
