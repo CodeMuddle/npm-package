@@ -1,4 +1,5 @@
 # Sakwe Sakwe
+A question answering system
 
 ## Goal
 * You have a list of Question Answer pairs and
