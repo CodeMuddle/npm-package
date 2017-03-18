@@ -159,7 +159,7 @@ describe('matching cities to foods', function() {
     // answers: 'Canada', 'Toronto, Canada'
     test('the asked question has an answer', function() {
         var question = 'where is drake from?';
-        var answers: ['Canada', 'Toronto', 'Toronto, Canada']
+        var answers = ['Canada', 'Toronto', 'Toronto, Canada'];
         var QASource = [{ 
             question: question, 
             answers: answers
