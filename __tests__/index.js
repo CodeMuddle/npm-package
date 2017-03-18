@@ -1,5 +1,5 @@
 // inside __tests__/index.js
-describe('matching cities to foods', function() {
+describe('Exposed functions of Question Answering System', function() {
     beforeEach(function() {
         console.log('About to run the index.js test');
     });
