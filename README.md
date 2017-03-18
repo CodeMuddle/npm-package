@@ -38,7 +38,7 @@ npm init -y # this will create package.json file
 // inside package.json
 {
 ...
-    "main": "dist/index.js",
+    "main": "dist/index.js"
 ...
 }
 ```
