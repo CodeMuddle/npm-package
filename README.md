@@ -96,21 +96,22 @@ npm run tsc:init
 ...
     "scripts": {
 ...
-        "test": "jest"
+        "test": "jest --no-cache"
 ...
     }
 ...
-  "jest": {
-    "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ]
-  }
+    "jest": {
+        "transform": {
+            ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+        },
+        "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js"
+        ],
+        "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js"
+    }
 ...
 }
 ```
