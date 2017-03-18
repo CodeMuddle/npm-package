@@ -17,7 +17,7 @@
 # in your terminal
 mkdir sakwesakwe
 cd sakwesakwe
-npm init -y
+npm init -y # this will create package.json file
 ```
 
 * Create the project structure
@@ -31,6 +31,16 @@ npm init -y
     | - index.ts
  | - dist
     | - index.js
+```
+
+* Modify the *main entry* inside `package.json`
+```javascript
+// inside package.json
+{
+...
+    "main": "dist/index.js",
+...
+}
 ```
 
 * Install development related packages
