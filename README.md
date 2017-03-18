@@ -188,7 +188,7 @@ describe('matching cities to foods', () => {
     // answers: 'Canada', 'Toronto, Canada'
     test('the asked question has an answer', () => {
         const question = 'where is drake from?';
-        let answers: ['Canada', 'Toronto', 'Toronto, Canada']
+        let answers = ['Canada', 'Toronto', 'Toronto, Canada'];
         var QASource = [{ question, answers }];
         let sakwesakwe = new Sakwesakwe(QASource);
         let predictedAnswer = sakwesakwe.ask(question);
