@@ -4,6 +4,8 @@
   "description": "## Goal * You have a list of Question Answer pairs and * You have to create a system that consumes the list then answer asked questions using the list",
   "main": "dist/index.js",
   "scripts": {
+    "tsc:init": "node ./node_modules/typescript/lib/tsc --init",
+    "tsc:compile": "node ./node_modules/typescript/lib/tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
