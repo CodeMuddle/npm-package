@@ -22,6 +22,7 @@ npm init -y
 
 * Create the project structure
 ```sh
+# /- refers to the project root folder - "sakwesakwe" in my case
 /-
  | - __tests__
     | - index.js # we test javascript usage
