@@ -2,7 +2,7 @@
   "name": "sakwesakwe",
   "version": "1.0.0",
   "description": "## Goal * You have a list of Question Answer pairs and * You have to create a system that consumes the list then answer asked questions using the list",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

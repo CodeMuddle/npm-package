@@ -45,6 +45,7 @@ npm init -y # this will create package.json file
 
 * Install development related packages
 ```sh
+# in your terminal
 npm install --save-dev typescript
 npm install --save-dev @types/node
 npm install --save-dev gulp-cli
@@ -72,6 +73,7 @@ npm install --save-dev ts-jest @types/jest
 ```
 
 ```sh
+# in your terminal
 npm run tsc:init
 ```
 
@@ -114,6 +116,7 @@ npm run tsc:init
 
 * Create a `gulpfile.js`
 ```sh
+# in your terminal
 touch gulpfile.js
 ```
 
@@ -140,6 +143,7 @@ gulp.task('default', function() {
 
 * Create a test for Javascript usage
 ```sh
+# in your terminal
 touch __tests__/index.js
 ```
 
@@ -168,6 +172,7 @@ describe('matching cities to foods', function() {
 
 * Create a test for Typescript usage
 ```sh
+# in your terminal
 touch __tests__/index.ts
 ```
 
@@ -193,10 +198,11 @@ describe('matching cities to foods', () => {
 
 * Run the tests **They should fail**
 ```sh
+# in your terminal
 npm test
 ```
 
-* Write the required logic 
+* Write the required logic
 ```javascript
-
+// inside src/index.ts
 ```
