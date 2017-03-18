@@ -151,7 +151,7 @@ touch __tests__/index.js
 
 ```javascript
 // inside __tests__/index.js
-describe('matching cities to foods', function() {
+describe('Exposed functions of Question Answering System', function() {
     beforeEach(function() {
         console.log('About to run the index.js test');
     });
@@ -180,9 +180,9 @@ touch __tests__/index.ts
 
 ```typescript
 // inside __tests__/index.ts
-describe('matching cities to foods', () => {
+describe('Exposed functions of Question Answering System', () => {
     beforeEach(() => {
-        console.log('About to run the index.js test');
+        console.log('About to run the index.ts test');
     });
     // question: where is drake from?
     // answers: 'Canada', 'Toronto, Canada'
