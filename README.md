@@ -198,7 +198,7 @@ describe('Exposed functions of Question Answering System', () => {
 });
 ```
 
-* Run the tests **They should fail**
+* Run the tests *they should fail*
 ```sh
 # in your terminal
 npm test
