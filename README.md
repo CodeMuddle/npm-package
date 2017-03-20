@@ -16,14 +16,14 @@ A question answering system
 * Initialize the project
 ```sh
 # in your terminal
-mkdir sakwesakwe
-cd sakwesakwe
+mkdir answer-me
+cd answer-me
 npm init -y # this will create package.json file
 ```
 
 * Create the project structure
 ```sh
-# /- refers to the project root folder - "sakwesakwe" in my case
+# /- refers to the project root folder - "answer-me" in my case
 /-
  | - __tests__
     | - index.js # we test javascript usage
@@ -165,8 +165,8 @@ describe('Testing ask function of Question Answering System', function() {
             question: question, 
             answers: answers
         }];
-        var sakwesakwe = new Sakwesakwe(QASource);
-        var predictedAnswer = sakwesakwe.ask(question);
+        var answerme = new Answerme(QASource);
+        var predictedAnswer = answerme.ask(question);
         var realAnswers = answers;
         expect(realAnswers).toContain(predictedAnswer);
     });
@@ -191,8 +191,8 @@ describe('Testing ask function of Question Answering System', () => {
         const question = 'where is drake from?';
         let answers = ['Canada', 'Toronto', 'Toronto, Canada'];
         var QASource = [{ question, answers }];
-        let sakwesakwe = new Sakwesakwe(QASource);
-        let predictedAnswer = sakwesakwe.ask(question);
+        let answerme = new Answerme(QASource);
+        let predictedAnswer = answerme.ask(question);
         let realAnswers = answers;
         expect(realAnswers).toContain(predictedAnswer);
     });

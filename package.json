@@ -1,5 +1,5 @@
 {
-  "name": "sakwesakwe",
+  "name": "answerme",
   "version": "1.0.0",
   "description": "## Goal * You have a list of Question Answer pairs and * You have to create a system that consumes the list then answer asked questions using the list",
   "main": "dist/index.js",
