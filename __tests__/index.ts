@@ -1,4 +1,6 @@
 // inside __tests__/index.ts
+// import Answerme from 'answerme'; 
+import Answerme from '../dist/index.js';
 describe('Testing ask function of Question Answering System', () => {
     beforeEach(() => {
         console.log('About to run the index.ts test');
@@ -9,8 +11,8 @@ describe('Testing ask function of Question Answering System', () => {
         const question = 'where is drake from?';
         let answers = ['Canada', 'Toronto', 'Toronto, Canada'];
         var QASource = [{ question, answers }];
-        let sakwesakwe = new Sakwesakwe(QASource);
-        let predictedAnswer = sakwesakwe.ask(question);
+        let answerme = new Answerme(QASource);
+        let predictedAnswer = answerme.ask(question);
         let realAnswers = answers;
         expect(realAnswers).toContain(predictedAnswer);
     });

@@ -1,4 +1,6 @@
 // inside __tests__/index.js
+// var Answerme = require('answerme');
+var Answerme = require('../dist/index.js');
 describe('Testing ask function of Question Answering System', function() {
     beforeEach(function() {
         console.log('About to run the index.js test');
@@ -12,8 +14,8 @@ describe('Testing ask function of Question Answering System', function() {
             question: question, 
             answers: answers
         }];
-        var sakwesakwe = new Sakwesakwe(QASource);
-        var predictedAnswer = sakwesakwe.ask(question);
+        var answerme = new Answerme(QASource);
+        var predictedAnswer = answerme.ask(question);
         var realAnswers = answers;
         expect(realAnswers).toContain(predictedAnswer);
     });
