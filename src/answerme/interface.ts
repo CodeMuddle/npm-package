@@ -19,10 +19,10 @@ export interface AnswermeInterface {
     register(question: string, answers: Array<string>): Promise<boolean>;
 
     /**
-     * update existing qa pair
+     * update existing qa pair or create new one
      * if the question exists, then answers will replace existing ones
      */
-    update(question: string, answers: Array<string>): Promise<boolean>;
+    cleanRegister(question: string, answers: Array<string>): Promise<boolean>;
 
 
 }
