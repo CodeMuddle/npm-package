@@ -6,6 +6,7 @@
   "scripts": {
     "tsc:init": "node ./node_modules/typescript/lib/tsc --init",
     "tsc:compile": "node ./node_modules/typescript/lib/tsc",
+    "gulp:compile": "gulp",
     "test": "jest"
   },
   "repository": {

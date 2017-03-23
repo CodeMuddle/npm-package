@@ -208,4 +208,28 @@ npm test
 * Write the required logic
 ```javascript
 // inside src/index.ts
+// we will have to create a class Answerme inside src/answerme/controller.ts
+import { Answerme } from './answerme/controller';
+
+Answerme.Answerme = Answerme;
+export default Answerme;
+```
+
+* Add gulp command to package.json 
+```javascript
+// inside package.json
+{
+...
+    "scripts": {
+...
+        "gulp:compile": "gulp"
+...
+    }
+...    
+}
+```
+
+* Run the command
+```sh
+npm run gulp:compile
 ```
