@@ -1,9 +1,10 @@
 // inside __tests__/index.js
+'use strict';
 // var Answerme = require('answerme');
 var Answerme = require('../dist/index.js');
 describe('Testing ask function of Question Answering System', function() {
     beforeEach(function() {
-        console.log('About to run the index.js test');
+        console.log('About to run the index.js test', Answerme, Object.keys(Answerme));
     });
     // question: where is drake from?
     // answers: 'Canada', 'Toronto, Canada'

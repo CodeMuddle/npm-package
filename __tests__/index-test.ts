@@ -1,9 +1,11 @@
 // inside __tests__/index.ts
 // import Answerme from 'answerme'; 
+// import { Answerme } from 'answerme'; 
 import Answerme from '../dist/index.js';
+// import { Answerme } from '../dist/index';
 describe('Testing ask function of Question Answering System', () => {
     beforeEach(() => {
-        console.log('About to run the index.ts test');
+        console.log('About to run the index.ts test', Answerme);
     });
     // question: where is drake from?
     // answers: 'Canada', 'Toronto, Canada'

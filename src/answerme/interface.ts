@@ -26,5 +26,3 @@ export interface AnswermeInterface {
 
 
 }
-
-export default AnswermeInterface;

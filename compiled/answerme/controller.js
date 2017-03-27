@@ -1,50 +1,35 @@
-/**
- * Manage all logic related to manupilating qa pairs and predicting the response
- */
-import { AnswermeInterface } from './interface';
-
-export class Answerme implements AnswermeInterface {
-    constructor(
-        private QASource: Array<{ question: string, answers: Array<string> }>
-    ) {
+export class Answerme {
+    constructor(QASource) {
+        this.QASource = QASource;
         console.assert(QASource.length > 0, 'QASource must always be an non-empty array');
     }
-
-    public ask(question: string): Promise<string> {
+    ask(question) {
         let answer = this.QASource.find(qa => qa.question === question).answers[0];
         return Promise.resolve(answer);
     }
-
-    public answer(question: string, answer: string):
-        Promise<boolean> {
+    answer(question, answer) {
         let qa = this.QASource.find(qa => qa.question === question);
         let isCorrect = qa && qa.answers.some(a => a === answer);
         return Promise.resolve(isCorrect);
     }
-
-    public register(question: string, answers: Array<string>):
-        Promise<boolean> {
+    register(question, answers) {
         let qa = this.QASource.find(qa => qa.question === question);
         if (qa) {
             answers.push(...qa.answers);
         }
-
         return this.cleanRegister(question, answers);
     }
-
-    public cleanRegister(question: string, answers: Array<string>):
-        Promise<boolean> {
+    cleanRegister(question, answers) {
         let qa = this.QASource.find(qa => qa.question === question);
         if (!qa) {
             let qa = { question, answers };
             this.QASource.push(qa);
-        } else {
+        }
+        else {
             qa.answers = answers;
         }
-
         return Promise.resolve(true);
     }
-
 }
-
 export default Answerme;
+//# sourceMappingURL=controller.js.map

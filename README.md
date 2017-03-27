@@ -10,7 +10,7 @@ A question answering system
 * Decide on what technology stack to use
     * The system is a `nodejs package`
     * We use `Typescript` as the coding language
-    * We use `Gulp` as the build system (along with Typescript and Babel plugins)
+    * We use `Rollup` as the build system (along with Typescript and Babel plugins)
     * We use `jest` for testing
 
 * Initialize the project
@@ -49,11 +49,13 @@ npm init -y # this will create package.json file
 # in your terminal
 npm install --save-dev typescript
 npm install --save-dev @types/node
-npm install --save-dev gulp-cli
-npm install --save-dev gulp
-npm install --save-dev gulp-sourcemaps
-npm install --save-dev gulp-typescript
-npm install --save-dev gulp-babel babel-plugin-transform-runtime babel-preset-es2015
+npm install --save-dev rollup
+npm install --save-dev rollup-plugin-node-resolve
+npm install --save-dev rollup-plugin-babel
+npm install --save-dev babel-preset-latest babel-plugin-external-helpers
+npm install --save-dev rollup-plugin-typescript
+npm install --save-dev rollup-plugin-eslint
+npm install --save-dev rollup-plugin-uglify
 npm install --save-dev jest
 npm install --save-dev ts-jest @types/jest
 ```
@@ -90,6 +92,20 @@ npm run tsc:init
 }
 ```
 
+```json
+// .babelrc
+{
+  "presets": [
+    ["latest", {
+      "es2015": {
+        "modules": false
+      }
+    }]
+  ],
+  "plugins": ["external-helpers"]
+}
+```
+
 * Add Jest configuration info to `package.json`
 ```javascript
 // inside package.json
@@ -117,41 +133,52 @@ npm run tsc:init
 }
 ```
 
-* Create a `gulpfile.js`
+* Create a `rollup.config.js`
 ```sh
 # in your terminal
-touch gulpfile.js
+touch rollup.config.js
 ```
 
 * Add script content to the Gulp file
 ```javascript
-var gulp = require('gulp');  
-var sourcemaps = require('gulp-sourcemaps');  
-var ts = require('gulp-typescript');  
-var babel = require('gulp-babel');
+// Rollup plugins
+import babel from 'rollup-plugin-babel';
+import resolve from 'rollup-plugin-node-resolve';
+import replace from 'rollup-plugin-replace';
+import typescript from 'rollup-plugin-typescript';
 
-var tsProject = ts.createProject('./tsconfig.json');
+export default {
+    entry: 'src/scripts/main.ts',
+    dest: 'dist/index.js',
+    format: 'umd', // immediately invoked function
+    name: 'answeme',
+    sourceMap: 'inline',
+    plugins: [
+        resolve({
+            jsnext: true,
+            main: true
+        }),
+        typescript(),
+        babel({
+            exclude: 'node_modules/**',
+        }),
+        replace({
+            ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+        }),
+        (process.env.NODE_ENV === 'production' && uglify())
+    ]
+}
 
-gulp.task('default', function() {  
-    return gulp.src('src/**/*.ts')
-        .pipe(sourcemaps.init())
-        .pipe(ts(tsProject))
-        .pipe(babel({
-            presets: ['es2015', 'transform-runtime']
-        }))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist'));
-});
 ```
 
 * Create a test for Javascript usage
 ```sh
 # in your terminal
-touch __tests__/index.js
+touch __tests__/index-test.js
 ```
 
 ```javascript
-// inside __tests__/index.js
+// inside __tests__/index-test.js
 describe('Testing ask function of Question Answering System', function() {
     beforeEach(function() {
         console.log('About to run the index.js test');
@@ -176,11 +203,11 @@ describe('Testing ask function of Question Answering System', function() {
 * Create a test for Typescript usage
 ```sh
 # in your terminal
-touch __tests__/index.ts
+touch __tests__/index-test.ts
 ```
 
 ```typescript
-// inside __tests__/index.ts
+// inside __tests__/index-test.ts
 describe('Testing ask function of Question Answering System', () => {
     beforeEach(() => {
         console.log('About to run the index.ts test');
