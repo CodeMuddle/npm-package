@@ -31,5 +31,5 @@ export class Answerme {
         return Promise.resolve(true);
     }
 }
-export default Answerme;
+// export default Answerme; 
 //# sourceMappingURL=controller.js.map

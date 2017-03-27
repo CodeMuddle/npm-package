@@ -10,7 +10,7 @@ A question answering system
 * Decide on what technology stack to use
     * The system is a `nodejs package`
     * We use `Typescript` as the coding language
-    * We use `Rollup` as the build system (along with Typescript and Babel plugins)
+    * We use `Rollup` as the build system (Babel plugins)
     * We use `jest` for testing
 
 * Initialize the project
@@ -55,6 +55,7 @@ npm install --save-dev rollup-plugin-babel
 npm install --save-dev babel-preset-latest babel-plugin-external-helpers
 npm install --save-dev rollup-plugin-typescript
 npm install --save-dev rollup-plugin-eslint
+npm install --save-dev rollup-plugin-replace
 npm install --save-dev rollup-plugin-uglify
 npm install --save-dev jest
 npm install --save-dev ts-jest @types/jest
@@ -139,26 +140,34 @@ npm run tsc:init
 touch rollup.config.js
 ```
 
-* Add script content to the Gulp file
+* Add script content to the Rollup config file
 ```javascript
 // Rollup plugins
 import babel from 'rollup-plugin-babel';
+import eslint from 'rollup-plugin-eslint';
 import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
 import replace from 'rollup-plugin-replace';
-import typescript from 'rollup-plugin-typescript';
+import uglify from 'rollup-plugin-uglify';
+
 
 export default {
-    entry: 'src/scripts/main.ts',
+    entry: 'compiled/index.js',
     dest: 'dist/index.js',
-    format: 'umd', // immediately invoked function
-    name: 'answeme',
-    sourceMap: 'inline',
+    format: 'cjs',
+    exports: 'named',
+    sourceMap: (process.env.NODE_ENV === 'production')? false: 'inline',
     plugins: [
         resolve({
             jsnext: true,
             main: true
         }),
-        typescript(),
+        commonjs(),
+        eslint({
+            exclude: [
+                'src/styles/**'
+            ]
+        }),
         babel({
             exclude: 'node_modules/**',
         }),
@@ -168,7 +177,6 @@ export default {
         (process.env.NODE_ENV === 'production' && uglify())
     ]
 }
-
 ```
 
 * Create a test for Javascript usage
@@ -193,9 +201,10 @@ describe('Testing ask function of Question Answering System', function() {
             answers: answers
         }];
         var answerme = new Answerme(QASource);
-        var predictedAnswer = answerme.ask(question);
-        var realAnswers = answers;
-        expect(realAnswers).toContain(predictedAnswer);
+        answerme.ask(question).then(predictedAnswer => {
+            var realAnswers = answers;
+            expect(realAnswers).toContain(predictedAnswer);
+        });
     });
 });
 ```
@@ -214,12 +223,12 @@ describe('Testing ask function of Question Answering System', () => {
     });
     // question: where is drake from?
     // answers: 'Canada', 'Toronto, Canada'
-    test('the asked question has an answer', () => {
+    async test('the asked question has an answer', () => {
         const question = 'where is drake from?';
         let answers = ['Canada', 'Toronto', 'Toronto, Canada'];
         var QASource = [{ question, answers }];
         let answerme = new Answerme(QASource);
-        let predictedAnswer = answerme.ask(question);
+        let predictedAnswer = await answerme.ask(question)
         let realAnswers = answers;
         expect(realAnswers).toContain(predictedAnswer);
     });
@@ -242,14 +251,18 @@ Answerme.Answerme = Answerme;
 export default Answerme;
 ```
 
-* Add gulp command to package.json 
+* Add compile commands to package.json 
 ```javascript
-// inside package.json
+// inside package.json 
+// 1. compile .ts to es6 using typescript
+// 2. compile es6 to es5 using rollup 
 {
 ...
     "scripts": {
 ...
-        "gulp:compile": "gulp"
+    "tsc:compile": "tsc",
+    "rollup:build": "rollup -c",
+    "build": "npm run tsc:compile && npm run rollup:build"
 ...
     }
 ...    
@@ -258,5 +271,11 @@ export default Answerme;
 
 * Run the command
 ```sh
-npm run gulp:compile
+npm run build
+```
+
+* Run the tests again *they should pass!!*
+```sh
+# in your terminal
+npm test
 ```

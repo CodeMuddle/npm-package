@@ -47,4 +47,4 @@ export class Answerme implements AnswermeInterface {
 
 }
 
-export default Answerme;
+// export default Answerme;
