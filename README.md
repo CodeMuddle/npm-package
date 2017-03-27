@@ -64,12 +64,13 @@ npm install --save-dev ts-jest @types/jest
 * Create Typescript configuration file `tsconfig.json`
 ```javascript
 // inside package.json
+// npm uses scripts from your node_modules/.bin folder
 {
 ...
     "scripts": {
 ...
-        "tsc:init": "node ./node_modules/typescript/lib/tsc --init",
-        "tsc:compile": "node ./node_modules/typescript/lib/tsc"
+        "tsc:init": "tsc --init",
+        "tsc:compile": "tsc"
 ...
     }
 ...    
