@@ -10,6 +10,9 @@ export class Answerme implements AnswermeInterface {
         console.assert(QASource.length > 0, 'QASource must always be an non-empty array');
     }
 
+    /**
+     * @param question
+     */
     public ask(question: string): Promise<string> {
         let answer = this.QASource.find(qa => qa.question === question).answers[0];
         return Promise.resolve(answer);

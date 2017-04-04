@@ -3,6 +3,9 @@ export class Answerme {
         this.QASource = QASource;
         console.assert(QASource.length > 0, 'QASource must always be an non-empty array');
     }
+    /**
+     * @param question
+     */
     ask(question) {
         let answer = this.QASource.find(qa => qa.question === question).answers[0];
         return Promise.resolve(answer);
