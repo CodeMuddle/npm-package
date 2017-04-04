@@ -13,7 +13,7 @@ Promised results for all its method calls.
 // example using a google sheets adapter
 let qaSource = new GSAdapter();
 
-qaSource.push().then(( /* element */ ) => { /* push returns the saved element */ } );
+qaSource.push().then(( /* void */ ) => { /* push does not return anything */ } );
 qaSource.pop().then((/* element */ ) => { /* pop returns the popped object */ })
 qaSource.filter().then((/* elementList */ ) => { /* filter returns the list of found object */ })
 qaSource.find().then((/* element */ ) => { /* find returns the found object */ })
