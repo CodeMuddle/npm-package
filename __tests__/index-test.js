@@ -18,7 +18,7 @@ describe('Testing ask function of Question Answering System', function () {
         var answerme = new Answerme(QASource);
         answerme.ask(question).then(predictedAnswer => {
             var realAnswers = answers;
-            console.log('--------\n', predictedAnswer, '\n--------')
+            console.log('--------\n', predictedAnswer, '\n--------');
             expect(realAnswers).toContain(predictedAnswer);
         });
     });

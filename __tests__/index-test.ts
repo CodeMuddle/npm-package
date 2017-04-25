@@ -11,7 +11,10 @@ describe('Testing ask function of Question Answering System', () => {
     test('the asked question has an answer', async () => {
         const question = 'where is drake from?';
         let answers = ['Canada', 'Toronto', 'Toronto, Canada'];
-        var QASource = [{ question, answers }];
+                
+        // debugger;
+
+        let QASource = [{ question, answers }];
         let answerme = new Answerme(QASource);
         let predictedAnswer = await answerme.ask(question);
         let realAnswers = answers;
