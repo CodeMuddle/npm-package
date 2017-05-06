@@ -5,7 +5,7 @@
         "moduleResolution": "node",
         "noImplicitAny": true,
         "sourceMap": true,
-        "outDir": "compiled"
+        "outDir": "compiled/ES6"
     },
     "include": [
         "src/**/*"

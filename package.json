@@ -8,9 +8,12 @@
     "tslint:init": "tslint --init",
     "tsc:init": "tsc --init",
     "tsc:compile": "tsc",
+    "babel:compile": "babel compiled/ES6 --no-babelrc --presets es2015 --out-dir compiled/ES5",
+    "babel:dist": "babel compiled/ES6 --no-babelrc --presets es2015 --out-file dist/index.js",
     "rollup:build": "rollup -c",
+    "babel:build": "npm run tsc:compile && npm run babel:compile && npm run babel:dist",
     "build": "npm run tsc:compile && npm run rollup:build",
-    "pretest": "npm run build",
+    "pretest": "npm run babel:build",
     "test": "jest",
     "debug": "node --nolazy --debug-brk=5858 __tests__/index-test.js"
   },
@@ -28,6 +31,7 @@
   "devDependencies": {
     "@types/jest": "^19.2.2",
     "@types/node": "^7.0.11",
+    "babel-cli": "^6.24.1",
     "eslint-config-es2015": "^1.1.0",
     "jest": "^19.0.2",
     "jest-cli": "^19.0.2",
@@ -50,6 +54,7 @@
     "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js"
   },
   "dependencies": {
-    "babel-cli": "^6.24.0"
+    "babel-cli": "^6.24.0",
+    "googleapis": "^19.0.0"
   }
 }

@@ -8,7 +8,8 @@ import uglify from 'rollup-plugin-uglify';
 
 
 export default {
-    entry: 'compiled/index.js',
+    // entry: 'compiled/index.js',
+    entry: 'compiled/answerme-ext2/gsheet-adapter/reading.js',
     dest: 'dist/index.js',
     format: 'cjs',
     exports: 'named',
