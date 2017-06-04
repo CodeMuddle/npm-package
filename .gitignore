@@ -59,7 +59,7 @@ typings/
 
 # build output
 compiled
-dist
+dist/index.js
 
 # file with credentials
 __tests__/ext2/*
