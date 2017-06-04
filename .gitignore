@@ -63,3 +63,5 @@ dist
 
 # file with credentials
 __tests__/ext2/*
+.local-data
+src/answerme-ext2/index-saved.ts
