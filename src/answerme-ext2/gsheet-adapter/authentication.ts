@@ -8,7 +8,7 @@ let SCOPES = ['https://www.googleapis.com/auth/spreadsheets']; //you can add mor
 const TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE) + '/.credentials/'; //the directory where we're going to save the token
 const TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.com-nodejs-quickstart.json'; //the file which will contain the token
 
-class Authentication {
+export class Authentication {
   authenticate(){
     return new Promise((resolve, reject)=>{
       let credentials = this.getClientSecret();
@@ -16,6 +16,7 @@ class Authentication {
       authorizePromise.then(resolve, reject);
     });
   }
+
   getClientSecret(){
     return require(credentialsFile);
   }
@@ -80,4 +81,4 @@ class Authentication {
   }
 }
 
-module.exports = new Authentication();
+export const authentication = new Authentication();

@@ -1,6 +1,6 @@
 let google = require('googleapis');
-let authentication = require('./authentication');
 
+import { authentication } from './authentication';
 
 function appendData(auth: any) {
   var sheets = google.sheets('v4');

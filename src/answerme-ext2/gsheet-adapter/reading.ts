@@ -1,5 +1,5 @@
 var google1 = require('googleapis');
-var authentication1 = require('./authentication');
+import { authentication } from './authentication';
 
 export function getData(auth: any) {
   var sheets = google1.sheets('v4');
@@ -24,6 +24,6 @@ export function getData(auth: any) {
   });
 }
 
-authentication1.authenticate().then((auth: any) => {
+authentication.authenticate().then((auth: any) => {
   getData(auth);
 });

@@ -1,9 +1,9 @@
 let google2 = require('googleapis');
-let authentication2 = require('./authentication');
 
+import { authentication } from './authentication';
 
 export function addSheet(auth: any) {
-  var sheets = google.sheets('v4');
+  var sheets = google2.sheets('v4');
   sheets.spreadsheets.create({
     auth: auth,
     resource: {

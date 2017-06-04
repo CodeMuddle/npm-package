@@ -21,7 +21,7 @@ export function defineGsheet(docId: string, credentialsFile: { [key: string]: an
 }
 
 // type guard
-function isArray(arg: any): arg is Array<string> {
+export function isArray(arg: any): arg is Array<string> {
     return !!arg && typeof arg.map === 'function';
 }
 /**
@@ -62,3 +62,7 @@ export function updateOne(content: string, name: string, tab: string): Promise<{
     let { docId, auth } = config;
     return readOne(name, tab).then(r => r.content? writeData(content, name, tab, docId, auth): Promise.reject('You can only update a filled cell!'));
 }
+
+export default {
+    defineGsheet, read, write, update
+};

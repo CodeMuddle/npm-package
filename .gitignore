@@ -60,3 +60,6 @@ typings/
 # build output
 compiled
 dist
+
+# file with credentials
+__tests__/ext2/*

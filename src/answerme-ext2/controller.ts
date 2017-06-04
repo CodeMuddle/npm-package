@@ -7,15 +7,26 @@ export class GsheetService {
         this.config = { docId, credentials, tokenStore }
     }
 
-    read() {
+    read(name: string | Array<string>, tab: string) {
         let { docId, credentials, tokenStore } = this.config;
         return defineGsheet(docId, credentials, tokenStore)
             .then(gsheet => {
                 // @returns { name: 'A1', content: string }
-                return read('C1', 'EXPLANATIONS_TABLE').then(out => out);
+                return read(name, tab).then(out => out);
             });
 
     }
+
+    write(content: string, name: string, tab: string) {
+        let { docId, credentials, tokenStore } = this.config;
+        return defineGsheet(docId, credentials, tokenStore)
+            .then(gsheet => {
+                // @returns { name: 'A1', content: string }
+                return write(content, name, tab).then(out => out);
+            });
+
+    }
+
 }
 
 export class GsheetAdapter {

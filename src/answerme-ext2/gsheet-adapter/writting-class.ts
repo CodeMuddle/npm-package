@@ -1,5 +1,4 @@
 let google = require('googleapis');
-let authentication = require('./authentication');
 
 /**
  * you can only write to an empty cell
