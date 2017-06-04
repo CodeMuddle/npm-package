@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "module": "dist/index-es6.js",
   "scripts": {
+    "jest": "jest",
     "tslint:init": "tslint --init",
     "tsc:init": "tsc --init",
     "tsc:compile": "tsc",

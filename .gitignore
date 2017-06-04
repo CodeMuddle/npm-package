@@ -63,6 +63,7 @@ dist
 
 # file with credentials
 __tests__/ext2/*
+.local-tests
 .local-data
 src/answerme-ext2/index-saved.ts
 src/answerme-ext2/gsheet-adapter/authentication.ts
