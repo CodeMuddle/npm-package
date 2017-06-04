@@ -65,3 +65,7 @@ dist
 __tests__/ext2/*
 .local-data
 src/answerme-ext2/index-saved.ts
+src/answerme-ext2/gsheet-adapter/authentication.ts
+src/answerme-ext2/gsheet-adapter/reading.ts
+src/answerme-ext2/gsheet-adapter/writting.ts
+src/answerme-ext2/gsheet-adapter/update.ts
