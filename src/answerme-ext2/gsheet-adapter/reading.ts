@@ -1,7 +1,7 @@
 var google1 = require('googleapis');
 var authentication1 = require('./authentication');
 
-function getData(auth: any) {
+export function getData(auth: any) {
   var sheets = google1.sheets('v4');
   sheets.spreadsheets.values.get({
     auth: auth,

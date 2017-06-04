@@ -1,25 +1,24 @@
 import * as fs from 'fs';
 import * as readline from 'readline';
 let googleAuth = require('google-auth-library');
-const credentialsFile = '../.local-data/credentials.json';
-
 
 let SCOPES = ['https://www.googleapis.com/auth/spreadsheets']; //you can add more scopes according to your permission need. But in case you chang the scope, make sure you deleted the ~/.credentials/sheets.googleapis.com-nodejs-quickstart.json file
-const TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE) + '/.credentials/'; //the directory where we're going to save the token
-const TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.com-nodejs-quickstart.json'; //the file which will contain the token
 
-class Authentication {
-  authenticate(){
+let tokenStoreFile = 'sheets.googleapis.com-nodejs-quickstart.json'
+
+export class Authentication {
+  constructor(){}
+  authenticate(credentials: { [key: string]: any }, tokenStoreDir: string){
     return new Promise((resolve, reject)=>{
-      let credentials = this.getClientSecret();
-      let authorizePromise = this.authorize(credentials);
+      credentials = this.getClientSecret(credentials);
+      let authorizePromise = this.authorize(credentials, tokenStoreDir);
       authorizePromise.then(resolve, reject);
     });
   }
-  getClientSecret(){
-    return require(credentialsFile);
+  getClientSecret(credentials: { [key: string]: any }){
+    return credentials;
   }
-  authorize(credentials: any) {
+  authorize(credentials: any, tokenStoreDir: string) {
     var clientSecret = credentials.installed.client_secret;
     var clientId = credentials.installed.client_id;
     var redirectUrl = credentials.installed.redirect_uris[0];
@@ -28,9 +27,9 @@ class Authentication {
 
     return new Promise((resolve, reject)=>{
       // Check if we have previously stored a token.
-      fs.readFile(TOKEN_PATH, (err, token: any) => {
+      fs.readFile(`${tokenStoreDir}${tokenStoreFile}`, (err, token: any) => {
         if (err) {
-          this.getNewToken(oauth2Client).then((oauth2ClientNew: any)=>{
+          this.getNewToken(oauth2Client, tokenStoreDir, tokenStoreFile).then((oauth2ClientNew: any)=>{
             resolve(oauth2ClientNew);
           }, (err: any)=>{
             reject(err);
@@ -42,7 +41,7 @@ class Authentication {
       });
     });
   }
-  getNewToken(oauth2Client: any, callback?: any) {
+  getNewToken(oauth2Client: any, tokenStoreDir: string, tokenStoreFile: string, callback?: any) {
     return new Promise((resolve, reject)=>{
       var authUrl = oauth2Client.generateAuthUrl({
         access_type: 'offline',
@@ -61,13 +60,13 @@ class Authentication {
             reject();
           }
           oauth2Client.credentials = token;
-          this.storeToken(token);
+          this.storeToken(token, tokenStoreDir, tokenStoreFile);
           resolve(oauth2Client);
         });
       });
     });
   }
-  storeToken(token: any) {
+  storeToken(token: any, TOKEN_DIR: string, TOKEN_FILE: string) {
     try {
       fs.mkdirSync(TOKEN_DIR);
     } catch (err) {
@@ -75,9 +74,7 @@ class Authentication {
         throw err;
       }
     }
-    fs.writeFile(TOKEN_PATH, JSON.stringify(token));
-    console.log('Token stored to ' + TOKEN_PATH);
+    fs.writeFile(`${TOKEN_DIR}${TOKEN_FILE}`, JSON.stringify(token));
+    console.log('Token stored to ' + `${TOKEN_DIR}${TOKEN_FILE}`);
   }
 }
-
-module.exports = new Authentication();

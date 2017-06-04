@@ -5,6 +5,36 @@ A question answering system
 * You have a list of Question Answer pairs and
 * You have to create a system that consumes the list then answer asked questions using the list
 
+```js
+const answerme = require('answerme');
+answerme = new Answerme();
+
+let question = 'How are you?', answers = ['I am good!', 'Fine! how are you?']; 
+await answerme.register(question, answers);
+```
+```js
+// ask a question
+let  question = 'How are you?';
+let predictedAnswer = await answerme.ask(question);
+```
+```js
+// check to see if you know an answer to a given question
+let question = 'How are you?', answer = 'I am good!';
+let isCorrect = await answerme.answer(question, answer);
+```
+
+* Passing a QAPair storage source
+```js
+const GsheetAdapter = require('answerme').GsheetAdapter;
+const answerme = require('answerme').AnswermeWithAdapter;
+let spreadSheetId; // identity of the google sheet
+let credentials; // contains 'client_id' and 'client_secret' , you download this from google developers console website 'https://console.developers.google.com/apis/credentials'
+let tokenStore; // obsolute path to the folder where the generated token will be stored
+const QASource = new GsheetAdapter(spreadSheetId, credentials, tokenStore);
+answerme = new Answerme(QASource);
+```
+
+
 ## Step by Step 
 
 * Decide on what technology stack to use

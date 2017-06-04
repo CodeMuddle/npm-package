@@ -2,7 +2,7 @@ let google2 = require('googleapis');
 let authentication2 = require('./authentication');
 
 
-function addSheet(auth: any) {
+export function addSheet(auth: any) {
   var sheets = google.sheets('v4');
   sheets.spreadsheets.create({
     auth: auth,
@@ -21,6 +21,6 @@ function addSheet(auth: any) {
   });
 }
 
-authentication.authenticate().then((auth: any)=>{
+authentication.authenticate().then((auth: any) => {
     addSheet(auth);
 });
