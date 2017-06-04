@@ -1,4 +1,4 @@
-import { defineGsheet, read, write } from './service';
+import { defineGsheet, read, write, update } from './service';
 // import * as gsheetService from './service';
 
 export class GsheetService {
@@ -26,7 +26,15 @@ export class GsheetService {
             });
 
     }
+    update(content: string, name: string, tab: string) {
+        let { docId, credentials, tokenStore } = this.config;
+        return defineGsheet(docId, credentials, tokenStore)
+            .then(gsheet => {
+                // @returns { name: 'A1', content: string }
+                return update(content, name, tab).then(out => out);
+            });
 
+    }
 }
 
 export class GsheetAdapter {
