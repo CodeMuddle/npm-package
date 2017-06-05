@@ -1,6 +1,6 @@
 var google1 = require('googleapis');
 import { Authentication } from './gsheet-adapter/authentication-class';
-import { getData } from './gsheet-adapter/reading-class';
+import { getData, getRangeData } from './gsheet-adapter/reading-class';
 import { writeData } from './gsheet-adapter/writting-class';
 
 export let config: any = null;
@@ -37,8 +37,12 @@ export function readOne(name: string, tab: string): Promise<{ name: string, cont
     return getData(name, tab, docId, auth);
 }
 export function readMultiple(names: Array<string>, tab: string): Promise<Array<{ name: string, content: string }>> {
+    return Promise.all(names.map(name => readOne(name, tab)));
+}
+
+export function readRange(name: string, tab: string): Promise<Array<Array<{ name: string, content: string }>>> {
     let { docId, auth } = config;
-    return Promise.all(names.map(name => getData(name, tab, docId, auth)));
+    return getRangeData(name, tab, docId, auth);
 }
 
 /**

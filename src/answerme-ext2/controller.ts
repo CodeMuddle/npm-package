@@ -1,4 +1,4 @@
-import { defineGsheet, read, write, update } from './service';
+import { defineGsheet, read, write, update, readRange } from './service';
 import { AdapterInterface } from './interface';
 
 export class GsheetService {
@@ -32,6 +32,15 @@ export class GsheetService {
             .then(gsheet => {
                 // @returns { name: 'A1', content: string }
                 return update(content, name, tab).then(out => out);
+            });
+
+    }
+    readRange(name: string, tab: string) {
+        let { docId, credentials, tokenStore } = this.config;
+        return defineGsheet(docId, credentials, tokenStore)
+            .then(gsheet => {
+                // @returns { name: 'A1', content: string }
+                return readRange(name, tab).then(out => out);
             });
 
     }
@@ -87,9 +96,10 @@ export class GsheetAdapter implements AdapterInterface<QApair> {
         // if none found, keep fetching '100' in batch
 
         // let rows = ['1', '2', '3', '5', '5', '6']; // ... count till 50
-        let rows = (Array.apply(null, { length: 10 })).map((el: any, i: number) => i + 1);
+        // let rows = (Array.apply(null, { length: 10 })).map((el: any, i: number) => i + 1);
 
-        return Promise.all(rows.map((row: number) => this.readQApair(row)))
+        // return Promise.all(rows.map((row: number) => this.readQApair(row)))
+        return this.readQApairs(1, 10)
             .then(qapairs => {
                 debugger; // @TODO make sure the returned value is an array of qapairs
                 let qapair = qapairs.find(funct); // funct = function(qapair, index){ ... }
@@ -104,9 +114,10 @@ export class GsheetAdapter implements AdapterInterface<QApair> {
         // if none found, keep fetching '100' in batch
 
         // let rows = ['1', '2', '3', '5', '5', '6']; // ... count till 50
-        let rows = (Array.apply(null, { length: 50 })).map((el: any, i: number) => i + 1);
+        // let rows = (Array.apply(null, { length: 50 })).map((el: any, i: number) => i + 1);
 
-        return Promise.all(rows.map((row: number) => this.readQApair(row)))
+        // return Promise.all(rows.map((row: number) => this.readQApair(row)))
+        return this.readQApairs(1, 10)
             .then(qapairs => {
                 debugger; // @TODO make sure the returned value is an array of qapairs
                 return qapairs.filter(funct); // funct = function(qapair, index){ ... }
@@ -143,6 +154,23 @@ export class GsheetAdapter implements AdapterInterface<QApair> {
             })
     }
 
+    readQApairs(startRow: number | string, end: number | string): Promise<Array<QApair>> {
+        // let names = ['A1', 'B1', 'C1', 'D1', 'E1', 'F1']; // A1 = question and B1-F1 = 5 answers
+        let namess = [`A${startRow}`, `B${startRow}`, `C${startRow}`, `D${startRow}`, `E${startRow}`, `F${startRow}`];
+        let namees = [`A${end}`, `B${end}`, `C${end}`, `D${end}`, `E${end}`, `F${end}`];
+        let nameRange = `A${startRow}:F${end}`;
+        return this.gsheetService.readRange(nameRange, this.tab)
+            .then(rows => { // [{ name, content }]
+
+                return rows.map((row: any, rowId: number) => { // cellList = [{ name, content }]
+                    let cell = row.find((c: any) => c.name === `A${rowId}`); // { name, content } ??
+                    let question = cell.content;
+                    let answers = row.filter((c: any) => c.name !== `A${rowId}`)
+                        .map((c: any) => c.content);
+                    return { question, answers };
+                })
+            });
+    }
 
 }
 
