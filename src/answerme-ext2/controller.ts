@@ -163,9 +163,9 @@ export class GsheetAdapter implements AdapterInterface<QApair> {
             .then(rows => { // [{ name, content }]
 
                 return rows.map((row: any, rowId: number) => { // cellList = [{ name, content }]
-                    let cell = row.find((c: any) => c.name === `A${rowId}`); // { name, content } ??
+                    let cell = row.find((c: any) => c.name === `A${rowId+1}`); // { name, content } ??
                     let question = cell.content;
-                    let answers = row.filter((c: any) => c.name !== `A${rowId}`)
+                    let answers = row.filter((c: any) => c.name !== `A${rowId+1}`)
                         .map((c: any) => c.content);
                     return { question, answers };
                 })
