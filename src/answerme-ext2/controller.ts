@@ -156,8 +156,8 @@ export class GsheetAdapter implements AdapterInterface<QApair> {
 
     readQApairs(startRow: number | string, end: number | string): Promise<Array<QApair>> {
         // let names = ['A1', 'B1', 'C1', 'D1', 'E1', 'F1']; // A1 = question and B1-F1 = 5 answers
-        let namess = [`A${startRow}`, `B${startRow}`, `C${startRow}`, `D${startRow}`, `E${startRow}`, `F${startRow}`];
-        let namees = [`A${end}`, `B${end}`, `C${end}`, `D${end}`, `E${end}`, `F${end}`];
+        // let namess = [`A${startRow}`, `B${startRow}`, `C${startRow}`, `D${startRow}`, `E${startRow}`, `F${startRow}`];
+        // let namees = [`A${end}`, `B${end}`, `C${end}`, `D${end}`, `E${end}`, `F${end}`];
         let nameRange = `A${startRow}:F${end}`;
         return this.gsheetService.readRange(nameRange, this.tab)
             .then(rows => { // [{ name, content }]
