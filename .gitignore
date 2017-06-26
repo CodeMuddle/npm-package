@@ -58,7 +58,10 @@ typings/
 .env
 
 # build output
-compiled
+compiled/ES6/*.js
+compiled/ES6/**/*.js
+compiled/ES6/*.map
+compiled/ES6/**/*.map
 dist/index.js
 
 # file with credentials
@@ -70,3 +73,6 @@ src/answerme-ext2/gsheet-adapter/authentication.ts
 src/answerme-ext2/gsheet-adapter/reading.ts
 src/answerme-ext2/gsheet-adapter/writting.ts
 src/answerme-ext2/gsheet-adapter/update.ts
+
+# visual studio code
+.vscode

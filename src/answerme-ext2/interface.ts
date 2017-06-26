@@ -1,4 +1,4 @@
-export interface AdapterInterface<ITEM> {
+export interface IAdapter<ITEM> {
     /**
      * add an item to an array
      * @NOTE we cannot return void, so we return the pushed element instead
@@ -18,12 +18,12 @@ export interface AdapterInterface<ITEM> {
      * @param funct Function that returns a boolean
      * @returns Promise<Array<ITEM>>
      */
-    filter(funct: any): Promise<Array<ITEM>>;
+    filter(funct: any): Promise<ITEM[]>;
 
     /**
      * fetch one item from the array
      * @param funct Function that returns a boolean
-     * @returns Promise<ITEM> 
+     * @returns Promise<ITEM>
      */
     find(funct: any): Promise<ITEM>;
 

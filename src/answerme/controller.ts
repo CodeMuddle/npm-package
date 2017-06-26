@@ -1,11 +1,11 @@
 /**
  * Manage all logic related to manupilating qa pairs and predicting the response
  */
-import { AnswermeInterface } from './interface';
+import { IAnswerme } from './interface';
 
-export class Answerme implements AnswermeInterface {
+export class Answerme implements IAnswerme {
     constructor(
-        private QASource: Array<{ question: string, answers: Array<string> }>
+        private QASource: Array<{ question: string, answers: string[] }>
     ) {
         console.assert(QASource.length > 0, 'QASource must always be an non-empty array');
     }
@@ -14,20 +14,20 @@ export class Answerme implements AnswermeInterface {
      * @param question
      */
     public ask(question: string): Promise<string> {
-        let answer = this.QASource.find(qa => qa.question === question).answers[0];
+        const answer = this.QASource.find(qa => qa.question === question).answers[0];
         return Promise.resolve(answer);
     }
 
     public answer(question: string, answer: string):
         Promise<boolean> {
-        let qa = this.QASource.find(qa => qa.question === question);
-        let isCorrect = qa && qa.answers.some(a => a === answer);
+        const qa = this.QASource.find(qai => qai.question === question);
+        const isCorrect = qa && qa.answers.some(a => a === answer);
         return Promise.resolve(isCorrect);
     }
 
-    public register(question: string, answers: Array<string>):
+    public register(question: string, answers: string[]):
         Promise<boolean> {
-        let qa = this.QASource.find(qa => qa.question === question);
+        const qa = this.QASource.find(qai => qai.question === question);
         if (qa) {
             answers.push(...qa.answers);
         }
@@ -35,11 +35,11 @@ export class Answerme implements AnswermeInterface {
         return this.cleanRegister(question, answers);
     }
 
-    public cleanRegister(question: string, answers: Array<string>):
+    public cleanRegister(question: string, answers: string[]):
         Promise<boolean> {
-        let qa = this.QASource.find(qa => qa.question === question);
+        let qa = this.QASource.find(qai => qai.question === question);
         if (!qa) {
-            let qa = { question, answers };
+            qa = { question, answers };
             this.QASource.push(qa);
         } else {
             qa.answers = answers;

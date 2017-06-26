@@ -1,9 +1,9 @@
-import { Answerme as AnswermeClass } from './answerme/controller';
 import { Answerme as AnswermeWithAdapterClass } from './answerme-ext1/controller';
+import { Answerme as AnswermeClass } from './answerme/controller';
 
 import { ArrayAdapter as ArrayAdapterClass } from './answerme-ext1/array-adapter/controller';
 // import { GsheetAdapter as GsheetAdapterClass } from './answerme-ext2/gsheet-adapter/controller';
-import { GsheetAdapter as GsheetAdapterClass } from './answerme-ext2/controller';
+import { GsheetAdapter as GsheetAdapterClass } from './answerme-ext2/adapter';
 
 // for being able to call it inside a javascript (es5) file
 exports = AnswermeClass;

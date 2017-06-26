@@ -1,4 +1,4 @@
-export interface AnswermeInterface {
+export interface IAnswerme {
     /**
      * ask a question
      * The outside user asks a question to the system
@@ -21,19 +21,19 @@ export interface AnswermeInterface {
      * register a new qa pair
      * if the question exists, then answers will be added to the existing ones
      * @param question string
-     * @param answer Array<string>
+     * @param answer string[]
      * @returns Promise<boolean> whether the qa pair has been saved or not
      */
-    register(question: string, answers: Array<string>): Promise<boolean>;
+    register(question: string, answers: string[]): Promise<boolean>;
 
     /**
      * update existing qa pair or create new one
      * if the question exists, then answers will replace existing ones
      * @param question string
-     * @param answer Array<string>
+     * @param answer string[]
      * @returns Promise<boolean> whether the qa pair has been saved or not
      */
-    cleanRegister(question: string, answers: Array<string>): Promise<boolean>;
+    cleanRegister(question: string, answers: string[]): Promise<boolean>;
 
 
 }
