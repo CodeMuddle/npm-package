@@ -3,8 +3,6 @@ A question answering system
 
 [![Build Status][travis-image]][travis-url] [![codecov][codecov-image]][codecov-url] [![Dependency Status][dependency-image]][dependency-url] [![Code Climate][climate-image]][climate-url] [![MIT License][license-image]][license-url]
 
-[![Build Status](https://travis-ci.org/CodeMuddle/npm-package-tutorial.svg?branch=master)](https://travis-ci.org/CodeMuddle/npm-package-tutorial)
-
 ## Goal
 * You have a list of Question Answer pairs and
 * You have to create a system that consumes the list then answer asked questions using the list
