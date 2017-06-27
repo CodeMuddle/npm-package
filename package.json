@@ -16,7 +16,7 @@
     "build": "npm run tsc:compile && npm run rollup:build",
     "pretest": "rm -rf compiled && npm run tsc:compile &&  npm run rollup:build",
     "test": "jest",
-    "debug": "node --nolazy --debug-brk=5858 __tests__/index-test.js"
+    "coverage": "npm test -- --coverage"
   },
   "repository": {
     "type": "git",
@@ -42,6 +42,7 @@
     "googleapis": "^19.0.0"
   },
   "devDependencies": {
+    "@types/node": "^8.0.3",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-latest": "^6.24.1",
     "jest": "^20.0.4",
