@@ -19,5 +19,5 @@ script:
 - codecov
 env:
   global:
-    - CC_TEST_REPORTER_ID=
+    - CC_TEST_REPORTER_ID=412fbbf5b35dc640d3a06ea89d241b0be89c332f0795e03671d2d3082180def5
     - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
