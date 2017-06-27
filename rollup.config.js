@@ -18,7 +18,7 @@ export default {
 		replace({
 			ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
 		}),
-		process.env.NODE_ENV === 'production' && sourcemaps(),
+		process.env.NODE_ENV !== 'production' && sourcemaps(),
 		resolve({
 			jsnext: true,
 			main: true,
