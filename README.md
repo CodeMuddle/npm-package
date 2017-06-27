@@ -1,6 +1,8 @@
 # Answer me
 A question answering system
 
+[![Build Status][travis-image]][travis-url] [![codecov][codecov-image]][codecov-url] [![Dependency Status][dependency-image]][dependency-url] [![Code Climate][climate-image]][climate-url] [![MIT License][license-image]][license-url]
+
 [![Build Status](https://travis-ci.org/CodeMuddle/npm-package-tutorial.svg?branch=master)](https://travis-ci.org/CodeMuddle/npm-package-tutorial)
 
 ## Goal
@@ -312,3 +314,20 @@ npm run build
 # in your terminal
 npm test
 ```
+
+
+
+[travis-image]: https://travis-ci.org/CodeMuddle/npm-package-tutorial.svg?branch=master
+[travis-url]: https://travis-ci.org/CodeMuddle/npm-package-tutorial
+
+[codecov-image]: https://codecov.io/gh/CodeMuddle/npm-package-tutorial/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/CodeMuddle/npm-package-tutorial
+
+[dependency-image]: https://gemnasium.com/badges/github.com/CodeMuddle/npm-package-tutorial.svg?style=flat
+[dependency-url]: https://gemnasium.com/github.com/CodeMuddle/npm-package-tutorial
+
+[climate-image]: https://codeclimate.com/github/CodeMuddle/npm-package-tutorial/badges/gpa.svg
+[climate-url]: https://codeclimate.com/github/CodeMuddle/npm-package-tutorial
+
+[license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
+[license-url]: LICENSE
